@@ -60,10 +60,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.anonymous().disable()
 		.authorizeRequests()
 		.antMatchers(HttpMethod.OPTIONS).permitAll()
-		// when restricting access to 'Roles' you must remove the "ROLE_" part role
-        // for "ROLE_USER" use only "USER"
-        .antMatchers("/api/hello").access("hasAnyRole('USER')")          
-        .antMatchers("/api/admin").hasRole("ADMIN")
+		// when restricting access to 'Roles', remove the "ROLE_" part role
+        .antMatchers("/api/hello").access("hasAnyRole('USER')")
         // restricting all access to /api/** to authenticated users
         .antMatchers("/api/**").authenticated();
 	}
@@ -74,9 +72,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	private static class OAuthRequestedMatcher implements RequestMatcher {
 		public boolean matches(HttpServletRequest request) {
 			String auth = request.getHeader("Authorization");
-			// Determine if the client request contained an OAuth Authorization
-			boolean haveOauth2Token = (auth != null) && auth.startsWith("Bearer");
-			boolean haveAccessToken = request.getParameter("access_token")!=null;
+			// Determine if the request contained an OAuth Authorization
+			//boolean haveOauth2Token = (auth != null) && auth.startsWith("Bearer");
+			//boolean haveAccessToken = request.getParameter("access_token")!=null;
 			boolean isApi = false;
 			
 			// Determine if the resource called is "/api/**"

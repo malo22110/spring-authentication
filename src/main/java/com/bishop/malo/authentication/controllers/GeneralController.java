@@ -2,9 +2,11 @@ package com.bishop.malo.authentication.controllers;
 
 import java.security.Principal;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,6 +31,8 @@ public class GeneralController {
 	@GetMapping("/api/admin")
 	// If a controller request asks for the Principal user in
 	// the method declaration Spring security will provide it.
+	// , @AuthenticationPrincipal UserDetails user
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public RestMsg helloAdmin(Principal principal){
 		return new RestMsg(String.format("Welcome '%s'!", principal.getName()));
 	}

@@ -1,18 +1,14 @@
 package com.bishop.malo.authentication.entities;
 
 import java.util.Collection;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -22,10 +18,7 @@ public class Role {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
-	@ManyToMany(mappedBy = "roles")
-	private Collection<User> users;
-	
-
+//
 	@ManyToMany
 	@JoinTable(name = "roles_privileges", 
 	   joinColumns = @JoinColumn(
@@ -50,14 +43,6 @@ public class Role {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Collection<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(Collection<User> users) {
-		this.users = users;
 	}
 
 	public Collection<Privilege> getPrivileges() {
