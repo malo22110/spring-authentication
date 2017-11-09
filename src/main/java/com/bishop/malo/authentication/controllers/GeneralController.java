@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class GeneralController {
+	
+	@PreAuthorize("permitAll()")
 	@GetMapping("/")
 	public RestMsg hello(){
 		return new RestMsg("Hello World!");
@@ -33,7 +35,7 @@ public class GeneralController {
 	// the method declaration Spring security will provide it.
 	// , @AuthenticationPrincipal UserDetails user
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public RestMsg helloAdmin(Principal principal){
+	public RestMsg helloAdmin(Principal principal, @AuthenticationPrincipal UserDetails user){
 		return new RestMsg(String.format("Welcome '%s'!", principal.getName()));
 	}
 

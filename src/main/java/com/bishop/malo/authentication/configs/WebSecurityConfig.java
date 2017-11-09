@@ -17,7 +17,7 @@ import org.springframework.security.config.core.GrantedAuthorityDefaults;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.bishop.malo.authentication.services.MyUserDetailsService;
+import com.bishop.malo.authentication.services.CustomUserDetailsService;
 
 /**
  * provide a  WebSecurityConfigurerAdapter Bean that will give us the base to configure the authentication process.
@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * UserDetailsService is a core interface which loads user-specific data.
 	 */
 	@Autowired
-	protected MyUserDetailsService userDetailsService;
+	protected CustomUserDetailsService userDetailsService;
 
 	/**
 	 * The place to configure the authenticationManager Bean.

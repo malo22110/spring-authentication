@@ -1,4 +1,4 @@
-package com.bishop.malo.authentication.entities;
+package com.bishop.malo.authentication.models.entities;
 
 import java.util.Collection;
 

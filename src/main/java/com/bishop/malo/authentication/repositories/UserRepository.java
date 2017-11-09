@@ -6,8 +6,8 @@ import java.util.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.bishop.malo.authentication.entities.Role;
-import com.bishop.malo.authentication.entities.User;
+import com.bishop.malo.authentication.models.entities.Role;
+import com.bishop.malo.authentication.models.entities.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Serializable> {

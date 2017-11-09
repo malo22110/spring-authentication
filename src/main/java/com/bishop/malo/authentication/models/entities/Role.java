@@ -1,4 +1,4 @@
-package com.bishop.malo.authentication.entities;
+package com.bishop.malo.authentication.models.entities;
 
 import java.util.Collection;
 
@@ -10,9 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.springframework.security.core.GrantedAuthority;
+
 
 @Entity
-public class Role {
+public class Role implements GrantedAuthority {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,7 +40,7 @@ public class Role {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -46,11 +48,16 @@ public class Role {
 	}
 
 	public Collection<Privilege> getPrivileges() {
-		return privileges;
+		return this.privileges;
 	}
 
 	public void setPrivileges(Collection<Privilege> privileges) {
 		this.privileges = privileges;
+	}
+
+	@Override
+	public String getAuthority() {
+		return this.name;
 	}
 }
 

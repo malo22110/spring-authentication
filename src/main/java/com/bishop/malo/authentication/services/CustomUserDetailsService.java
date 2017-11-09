@@ -17,14 +17,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.bishop.malo.authentication.entities.Role;
-import com.bishop.malo.authentication.entities.User;
+import com.bishop.malo.authentication.models.entities.Role;
+import com.bishop.malo.authentication.models.entities.User;
 import com.bishop.malo.authentication.repositories.RoleRepository;
 import com.bishop.malo.authentication.repositories.UserRepository;
 
 @Service("userDetailsService")
 @Transactional
-public class MyUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -38,16 +38,18 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		User user = userRepository.findByUsername(username);
+		return userRepository.findByUsername(username);
 
-		if (user == null) {
-			return new org.springframework.security.core.userdetails.User(" ", " ", true, true, true, true,
-					Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
-		}
+//		if (user == null) {
+//			return new org.springframework.security.core.userdetails.User(" ", " ", true, true, true, true,
+//					Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+//		}
+//		
+//		return user;
 
-		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-				user.isEnabled(), true, true, true,
-				user.getRoles().stream().map(Role::getName).map(SimpleGrantedAuthority::new).collect(toList()));
+//		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+//				user.isEnabled(), true, true, true,
+//				user.getRoles().stream().map(Role::getName).map(SimpleGrantedAuthority::new).collect(toList()));
 	}
 
 //	private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {

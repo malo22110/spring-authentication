@@ -12,9 +12,9 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.bishop.malo.authentication.entities.Privilege;
-import com.bishop.malo.authentication.entities.Role;
-import com.bishop.malo.authentication.entities.User;
+import com.bishop.malo.authentication.models.entities.Privilege;
+import com.bishop.malo.authentication.models.entities.Role;
+import com.bishop.malo.authentication.models.entities.User;
 import com.bishop.malo.authentication.repositories.PrivilegeRepository;
 import com.bishop.malo.authentication.repositories.RoleRepository;
 import com.bishop.malo.authentication.repositories.UserRepository;
